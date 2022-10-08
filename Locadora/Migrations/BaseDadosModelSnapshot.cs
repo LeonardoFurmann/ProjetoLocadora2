@@ -22,6 +22,12 @@ namespace ProjetoLocadora.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("dataAlocacao")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("dataDevolucao")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("idFilme")
                         .HasColumnType("INTEGER");
 
@@ -64,6 +70,9 @@ namespace ProjetoLocadora.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("dataCadastro")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("endereco")
                         .HasColumnType("TEXT");

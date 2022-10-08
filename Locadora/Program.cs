@@ -80,17 +80,56 @@ namespace locadora
 
 			//cadastrar alocação
 			app.MapPost("/cadastraraloc", (BaseDados banco, Alocar alocar) =>
-			{
+				{
+					String retorno = " ";
+			
+						if(verificaFilmeLocado(banco, alocar)){							
+							retorno = "Filme já está locado. :(";
+						} else 
+						if (verificaClassificacaoIndicativa(banco, alocar) == false){
+								
+						retorno = "Idade não corresponde a classificação Indicativa do filme ";
 
-					banco.Alocacoes.Add(alocar);
-					banco.SaveChanges();
-					return "Alocação cadastrada!";
+						}else{
+							banco.Alocacoes.Add(alocar);
+							banco.SaveChanges();
+							retorno =  "Alocação cadastrada!";
+						}	
 
-					
+				return retorno;	
 				
+				}
+			);
+
+		Boolean verificaFilmeLocado(BaseDados banco, Alocar alocar){
+				bool filmeLocado = false;
+
+				foreach(Alocar alocacao in banco.Alocacoes){
+						if(alocar.idFilme == alocacao.idFilme){ //banco
+							filmeLocado = true;
+						} else {
+							filmeLocado =  false;
+							
+						}
+				}	
+
+				return filmeLocado;	
 			}
 
-			);
+		Boolean verificaClassificacaoIndicativa(BaseDados banco, Alocar alocar){
+			bool idadeCorrete = false;
+
+			int idade = banco.Usuarios.Find((alocar.idUsuario)).idade;
+			int cI = banco.Filmes.Find((alocar.idFilme)).classIndicativa;
+			
+			if( idade >= cI) { 
+				idadeCorrete = true;
+			} else{
+				idadeCorrete = false;
+			}
+
+			return idadeCorrete;
+		}
 			
 			//atualizar usuario
 			app.MapPost("/atualizarusuario/{id}", (BaseDados baseUsuarios, Usuario usuarioAtualizado, int id) =>
@@ -100,6 +139,9 @@ namespace locadora
 				usuario.nome = usuarioAtualizado.nome;
 				usuario.telefone = usuarioAtualizado.telefone;
 				usuario.idade = usuarioAtualizado.idade;
+				usuario.dataCadastro= usuarioAtualizado.dataCadastro;
+
+
 				baseUsuarios.SaveChanges();
 				return "Usuario atualizado.";
 			});
@@ -110,8 +152,9 @@ namespace locadora
 				var filme = baseFilmes.Filmes.Find(id);
 				filme.nome = filmeAtualizado.nome;
 				filme.diretor = filmeAtualizado.diretor;
-				// filme.dataLancamento = filmeAtualizado.dataLancamento;
+				filme.dataLancamento = filmeAtualizado.dataLancamento;
 				filme.genero = filmeAtualizado.genero;
+				filme.classIndicativa = filmeAtualizado.classIndicativa;
 				baseFilmes.SaveChanges();
 				return "Filme atualizado.";
 			});
@@ -122,7 +165,9 @@ namespace locadora
 				var alocacao = baseAlocacoes.Alocacoes.Find(id);
 				alocacao.idUsuario = alocacaoAtualizado.idUsuario;
 				alocacao.idFilme = alocacaoAtualizado.idFilme;
-				// alocacao.dataAloc = alocacaoAtualizado.dataAloc;
+				alocacao.dataAlocacao = alocacaoAtualizado.dataAlocacao;
+				alocacao.dataDevolucao = alocacaoAtualizado.dataDevolucao;
+
 				baseAlocacoes.SaveChanges();
 				return "Alocação atualizada.";
 			});

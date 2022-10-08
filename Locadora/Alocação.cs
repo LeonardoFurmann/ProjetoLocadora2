@@ -12,10 +12,11 @@ namespace locadora
 		public int idUsuario { get; set; }
     	public int idFilme { get; set; }
 
-        // public string? DataAlocacao = DateTime.Now.ToString();
+        public string? dataAlocacao { get; set; }
 
-        // public string? DataDevolucao = DateTime.Now.ToString();
+        public string? dataDevolucao { get; set; }
 
+        // public bool filmeEstaLocado;
 
     }
 

@@ -14,7 +14,8 @@ namespace locadora
     	public string? endereco { get; set; }
         public int idade { get; set; }
         public string? telefone { get; set; }
-        // public string? dataCadastro  { get; set; }
+
+        public string? dataCadastro  { get; set; }
     
     }
 }

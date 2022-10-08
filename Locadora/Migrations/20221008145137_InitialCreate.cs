@@ -15,7 +15,9 @@ namespace ProjetoLocadora.Migrations
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     idUsuario = table.Column<int>(type: "INTEGER", nullable: false),
-                    idFilme = table.Column<int>(type: "INTEGER", nullable: false)
+                    idFilme = table.Column<int>(type: "INTEGER", nullable: false),
+                    dataAlocacao = table.Column<string>(type: "TEXT", nullable: true),
+                    dataDevolucao = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,7 +50,8 @@ namespace ProjetoLocadora.Migrations
                     nome = table.Column<string>(type: "TEXT", nullable: true),
                     endereco = table.Column<string>(type: "TEXT", nullable: true),
                     idade = table.Column<int>(type: "INTEGER", nullable: false),
-                    telefone = table.Column<string>(type: "TEXT", nullable: true)
+                    telefone = table.Column<string>(type: "TEXT", nullable: true),
+                    dataCadastro = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

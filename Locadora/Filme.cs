@@ -16,6 +16,8 @@ namespace locadora
         public string? dataLancamento { get; set; }
         public string? genero { get; set; }   
         public int classIndicativa { get; set; }
+
+        
     }
 }
 
