@@ -16,7 +16,6 @@ namespace locadora
 
         public string? dataDevolucao { get; set; }
 
-        // public bool filmeEstaLocado;
 
     }
 

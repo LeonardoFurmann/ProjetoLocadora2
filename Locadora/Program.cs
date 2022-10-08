@@ -52,9 +52,38 @@ namespace locadora
 				return baseUsuarios.Usuarios.Find(id);
 			});
 
+			//listar usuario especifico (por nome)
+			app.MapGet("/usuario/nome/{nome}", (BaseDados baseUsuarios, String nome) => {
+				String retorno = "";
+
+					foreach(Usuario usuario in baseUsuarios.Usuarios){
+						if(usuario.nome.Equals(nome)){
+							retorno += nome + " - id: " + usuario.id + "\n";
+						}
+					}
+
+
+				return retorno;
+			});
+
 			//listar filme especifico (por id)
 			app.MapGet("/filme/{id}", (BaseDados baseFilmes, int id) => {
 				return baseFilmes.Filmes.Find(id);
+			});
+
+			//listar filme especifico (por nome)
+			app.MapGet("/filme/nome/{nome}", (BaseDados baseFilmes, String nome) => {
+					
+					String retorno = "";
+
+					foreach(Filme filme in baseFilmes.Filmes){
+						if(filme.nome.Equals(nome)){
+							retorno += filme.nome + " - id: " + filme.id + "\n";
+						}
+					}
+
+
+				return retorno;
 			});
 
 			//listar alocação especifica (por id)
