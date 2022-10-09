@@ -12,6 +12,10 @@ namespace locadora
 		public int idUsuario { get; set; }
     	public int idFilme { get; set; }
 
+        public string nomeUsuario { get; set; }
+
+        public string nomeFilme { get; set; }
+
         public string? dataAlocacao { get; set; }
 
         public string? dataDevolucao { get; set; }

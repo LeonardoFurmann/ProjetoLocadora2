@@ -16,6 +16,8 @@ namespace ProjetoLocadora.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     idUsuario = table.Column<int>(type: "INTEGER", nullable: false),
                     idFilme = table.Column<int>(type: "INTEGER", nullable: false),
+                    nomeUsuario = table.Column<string>(type: "TEXT", nullable: false),
+                    nomeFilme = table.Column<string>(type: "TEXT", nullable: false),
                     dataAlocacao = table.Column<string>(type: "TEXT", nullable: true),
                     dataDevolucao = table.Column<string>(type: "TEXT", nullable: true)
                 },

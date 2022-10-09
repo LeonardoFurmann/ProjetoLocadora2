@@ -34,6 +34,14 @@ namespace ProjetoLocadora.Migrations
                     b.Property<int>("idUsuario")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("nomeFilme")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("nomeUsuario")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("id");
 
                     b.ToTable("Alocacoes");

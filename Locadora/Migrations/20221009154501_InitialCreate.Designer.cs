@@ -10,7 +10,7 @@ using locadora;
 namespace ProjetoLocadora.Migrations
 {
     [DbContext(typeof(BaseDados))]
-    [Migration("20221008145137_InitialCreate")]
+    [Migration("20221009154501_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,14 @@ namespace ProjetoLocadora.Migrations
 
                     b.Property<int>("idUsuario")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("nomeFilme")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("nomeUsuario")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
