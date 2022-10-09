@@ -44,6 +44,7 @@ namespace locadora
 
 			//listar todos as alocações
 			app.MapGet("/alocacoes", (BaseDados baseAlocacoes) => {
+
 				return baseAlocacoes.Alocacoes.ToList();
 			});
 			
@@ -111,6 +112,9 @@ namespace locadora
 			app.MapPost("/cadastraraloc", (BaseDados banco, Alocar alocar) =>
 				{
 					String retorno = " ";
+
+					alocar.nomeUsuario = banco.Usuarios.Find(alocar.idUsuario).nome;
+					alocar.nomeFilme = banco.Filmes.Find(alocar.idFilme).nome;
 			
 						if(verificaFilmeLocado(banco, alocar)){							
 							retorno = "Filme já está locado. :(";
@@ -196,6 +200,8 @@ namespace locadora
 				alocacao.idFilme = alocacaoAtualizado.idFilme;
 				alocacao.dataAlocacao = alocacaoAtualizado.dataAlocacao;
 				alocacao.dataDevolucao = alocacaoAtualizado.dataDevolucao;
+				alocacao.nomeFilme = alocacaoAtualizado.nomeFilme;
+				alocacao.nomeUsuario  = alocacaoAtualizado.nomeUsuario;
 
 				baseAlocacoes.SaveChanges();
 				return "Alocação atualizada.";
