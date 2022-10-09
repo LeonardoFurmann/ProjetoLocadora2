@@ -120,6 +120,9 @@ namespace locadora
 						retorno = "Idade não corresponde a classificação Indicativa do filme ";
 
 						}else{
+							alocar.dataAlocacao = DateTime.Now.ToString("dd-MM-yyyy");
+							alocar.dataDevolucao = DateTime.Now.AddDays(7).ToString("dd-MM-yyyy");	
+
 							banco.Alocacoes.Add(alocar);
 							banco.SaveChanges();
 							retorno =  "Alocação cadastrada!";
