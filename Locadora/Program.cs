@@ -39,8 +39,16 @@ namespace locadora
 
 			//listar todos os filmes
 			app.MapGet("/filmes", (BaseDados baseFilmes) => {
+
+				foreach(Filme filme in baseFilmes.Filmes)
+					foreach(Alocar alocar in baseFilmes.Alocacoes)
+						if(alocar.idFilme == filme.id){
+						filme.estaLocado = "Está Locado";
+					}
+									
 				return baseFilmes.Filmes.ToList();
 			});
+
 
 			//listar todos as alocações
 			app.MapGet("/alocacoes", (BaseDados baseAlocacoes) => {
@@ -103,6 +111,7 @@ namespace locadora
 			//cadastrar filme
 			app.MapPost("/cadastrarfilme", (BaseDados baseFilmes, Filme filme) =>
 			{
+				filme.estaLocado = "Não está locado";
 				baseFilmes.Filmes.Add(filme);
 				baseFilmes.SaveChanges();
 				return "Filme cadastrado!";
@@ -112,11 +121,8 @@ namespace locadora
 			app.MapPost("/cadastraraloc", (BaseDados banco, Alocar alocar) =>
 				{
 					String retorno = " ";
-
-					alocar.nomeUsuario = banco.Usuarios.Find(alocar.idUsuario).nome;
-					alocar.nomeFilme = banco.Filmes.Find(alocar.idFilme).nome;
 			
-						if(verificaFilmeLocado(banco, alocar)){							
+						if(verificaFilmeLocado(banco, alocar) == true){							
 							retorno = "Filme já está locado. :(";
 						} else 
 						if (verificaClassificacaoIndicativa(banco, alocar) == false){
@@ -124,6 +130,9 @@ namespace locadora
 						retorno = "Idade não corresponde a classificação Indicativa do filme ";
 
 						}else{
+							alocar.nomeUsuario = banco.Usuarios.Find(alocar.idUsuario).nome;
+							alocar.nomeFilme = banco.Filmes.Find(alocar.idFilme).nome;
+							
 							alocar.dataAlocacao = DateTime.Now.ToString("dd-MM-yyyy");
 							alocar.dataDevolucao = DateTime.Now.AddDays(7).ToString("dd-MM-yyyy");	
 
@@ -142,15 +151,17 @@ namespace locadora
 
 				foreach(Alocar alocacao in banco.Alocacoes){
 						if(alocar.idFilme == alocacao.idFilme){ //banco
-							filmeLocado = true;
+							filmeLocado = true;	
+							break;			
 						} else {
 							filmeLocado =  false;
 							
 						}
+						
 				}	
-
 				return filmeLocado;	
-			}
+		}
+				
 
 		Boolean verificaClassificacaoIndicativa(BaseDados banco, Alocar alocar){
 			bool idadeCorrete = false;
@@ -191,6 +202,8 @@ namespace locadora
 				filme.dataLancamento = filmeAtualizado.dataLancamento;
 				filme.genero = filmeAtualizado.genero;
 				filme.classIndicativa = filmeAtualizado.classIndicativa;
+				filme.estaLocado = filmeAtualizado.estaLocado;
+
 				baseFilmes.SaveChanges();
 				return "Filme atualizado.";
 			});

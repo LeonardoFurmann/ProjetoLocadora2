@@ -62,6 +62,10 @@ namespace ProjetoLocadora.Migrations
                     b.Property<string>("diretor")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("estaLocado")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("genero")
                         .HasColumnType("TEXT");
 

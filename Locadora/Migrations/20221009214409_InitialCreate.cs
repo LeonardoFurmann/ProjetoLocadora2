@@ -36,7 +36,8 @@ namespace ProjetoLocadora.Migrations
                     diretor = table.Column<string>(type: "TEXT", nullable: true),
                     dataLancamento = table.Column<string>(type: "TEXT", nullable: true),
                     genero = table.Column<string>(type: "TEXT", nullable: true),
-                    classIndicativa = table.Column<int>(type: "INTEGER", nullable: false)
+                    classIndicativa = table.Column<int>(type: "INTEGER", nullable: false),
+                    estaLocado = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
