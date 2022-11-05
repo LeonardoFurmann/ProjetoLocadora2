@@ -29,8 +29,16 @@ namespace locadora
 			var connectionString = builder.Configuration.GetConnectionString("Usuarios") ?? "Data Source=Usuarios.db";
             connectionString = builder.Configuration.GetConnectionString("Filmes") ?? "Data Source=Filmes.db";
 			connectionString = builder.Configuration.GetConnectionString("Alocações") ?? "Data Source=Alocs.db";
+
 			builder.Services.AddSqlite<BaseDados>(connectionString);
+
+			//adiciona politica permissiva de cross-origin ao builder
+			builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+			
 			var app = builder.Build();
+
+			//ativa a politica de cross-origin
+			app.UseCors();
 			
 			//listar todos os usuarios
 			app.MapGet("/usuarios", (BaseDados baseUsuarios) => {
@@ -40,11 +48,14 @@ namespace locadora
 			//listar todos os filmes
 			app.MapGet("/filmes", (BaseDados baseFilmes) => {
 
+		
+		// usado somente para preencer o atributo dos filmes já cadastrados
 				foreach(Filme filme in baseFilmes.Filmes)
 					foreach(Alocar alocar in baseFilmes.Alocacoes)
 						if(alocar.idFilme == filme.id){
 						filme.estaLocado = "Está Locado";
 					}
+				
 									
 				return baseFilmes.Filmes.ToList();
 			});
@@ -136,6 +147,8 @@ namespace locadora
 							alocar.dataAlocacao = DateTime.Now.ToString("dd-MM-yyyy");
 							alocar.dataDevolucao = DateTime.Now.AddDays(7).ToString("dd-MM-yyyy");	
 
+							banco.Filmes.Find(alocar.idFilme).estaLocado = "Está Locado";
+
 							banco.Alocacoes.Add(alocar);
 							banco.SaveChanges();
 							retorno =  "Alocação cadastrada!";
@@ -150,15 +163,15 @@ namespace locadora
 				bool filmeLocado = false;
 
 				foreach(Alocar alocacao in banco.Alocacoes){
-						if(alocar.idFilme == alocacao.idFilme){ //banco
+						if(alocar.idFilme == alocacao.idFilme){ 
 							filmeLocado = true;	
 							break;			
 						} else {
 							filmeLocado =  false;
 							
-						}
-						
+						}					
 				}	
+
 				return filmeLocado;	
 		}
 				
@@ -250,7 +263,7 @@ namespace locadora
 				return "Alocação deletada.";
 			});
 						
-			app.Run();
+			app.Run("http://localhost:3000");;
 		}
 	}
 }
