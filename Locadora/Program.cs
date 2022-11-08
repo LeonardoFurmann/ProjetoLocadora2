@@ -45,18 +45,26 @@ namespace locadora
 				return baseUsuarios.Usuarios.ToList();
 			});
 
+			// // usado somente para preencer o atributo dos filmes já cadastrados
+			// app.MapGet("/temp", (BaseDados banco) => {
+		
+			// foreach(Filme filme in banco.Filmes){
+			// 		foreach(Alocar alocar in banco.Alocacoes)
+			// 			if(alocar.idFilme == filme.id){
+			// 			filme.statusFilme = "Está Locado";
+			// 			break;
+			// 		} else {
+			// 		filme.statusFilme = "Disponível";
+			// 	}
+
+			// }
+			// 		banco.SaveChanges();
+			// });
+
+
 			//listar todos os filmes
 			app.MapGet("/filmes", (BaseDados baseFilmes) => {
-
-		
-		// usado somente para preencer o atributo dos filmes já cadastrados
-				foreach(Filme filme in baseFilmes.Filmes)
-					foreach(Alocar alocar in baseFilmes.Alocacoes)
-						if(alocar.idFilme == filme.id){
-						filme.estaLocado = "Está Locado";
-					}
-				
-									
+								
 				return baseFilmes.Filmes.ToList();
 			});
 
@@ -122,7 +130,7 @@ namespace locadora
 			//cadastrar filme
 			app.MapPost("/cadastrarfilme", (BaseDados baseFilmes, Filme filme) =>
 			{
-				filme.estaLocado = "Não está locado";
+				filme.statusFilme = "Disponível";
 				baseFilmes.Filmes.Add(filme);
 				baseFilmes.SaveChanges();
 				return "Filme cadastrado!";
@@ -147,7 +155,9 @@ namespace locadora
 							alocar.dataAlocacao = DateTime.Now.ToString("dd-MM-yyyy");
 							alocar.dataDevolucao = DateTime.Now.AddDays(7).ToString("dd-MM-yyyy");	
 
-							banco.Filmes.Find(alocar.idFilme).estaLocado = "Está Locado";
+							alocar.statusAloc = "Em andamento";
+
+							banco.Filmes.Find(alocar.idFilme).statusFilme = "Está Locado";
 
 							banco.Alocacoes.Add(alocar);
 							banco.SaveChanges();
@@ -162,15 +172,23 @@ namespace locadora
 		Boolean verificaFilmeLocado(BaseDados banco, Alocar alocar){
 				bool filmeLocado = false;
 
-				foreach(Alocar alocacao in banco.Alocacoes){
-						if(alocar.idFilme == alocacao.idFilme){ 
-							filmeLocado = true;	
-							break;			
-						} else {
-							filmeLocado =  false;
+				if(banco.Filmes.Find(alocar.idFilme).statusFilme.Equals("Disponível")){
+
+					filmeLocado = false;
+				} else {
+					filmeLocado = true;
+
+				}
+
+				// foreach(Alocar alocacao in banco.Alocacoes){
+				// 		if(alocar.idFilme == alocacao.idFilme){ 
+				// 			filmeLocado = true;	
+				// 			break;			
+				// 		} else {
+				// 			filmeLocado =  false;
 							
-						}					
-				}	
+				// 		}					
+				// }	
 
 				return filmeLocado;	
 		}
@@ -190,7 +208,23 @@ namespace locadora
 
 			return idadeCorrete;
 		}
-			
+
+			//fazer devolução
+			app.MapPost("/devolucao/{id}", (BaseDados banco, int id) =>{
+				
+				 Alocar alocacao = banco.Alocacoes.Find(id);
+
+				alocacao.statusAloc = "Devolvido";
+
+				banco.Filmes.Find(alocacao.idFilme).statusFilme = "Disponível";
+				
+				banco.SaveChanges();
+				return "Devolução feita";
+
+			});
+
+
+
 			//atualizar usuario
 			app.MapPost("/atualizarusuario/{id}", (BaseDados baseUsuarios, Usuario usuarioAtualizado, int id) =>
 			{
@@ -215,7 +249,7 @@ namespace locadora
 				filme.dataLancamento = filmeAtualizado.dataLancamento;
 				filme.genero = filmeAtualizado.genero;
 				filme.classIndicativa = filmeAtualizado.classIndicativa;
-				filme.estaLocado = filmeAtualizado.estaLocado;
+				filme.statusFilme = filmeAtualizado.statusFilme;
 
 				baseFilmes.SaveChanges();
 				return "Filme atualizado.";

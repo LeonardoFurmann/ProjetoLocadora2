@@ -20,6 +20,8 @@ namespace locadora
 
         public string? dataDevolucao { get; set; }
 
+        public string statusAloc { get; set; }
+
 
     }
 
