@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Faculdade\\ProjetoLocadora2\\locadora\\ProjetoLocadora.csproj": {}
+    "C:\\Users\\lucas\\Desktop\\ProjetoLocadora2-main\\locadora\\ProjetoLocadora.csproj": {}
   },
   "projects": {
-    "D:\\Faculdade\\ProjetoLocadora2\\locadora\\ProjetoLocadora.csproj": {
+    "C:\\Users\\lucas\\Desktop\\ProjetoLocadora2-main\\locadora\\ProjetoLocadora.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Faculdade\\ProjetoLocadora2\\locadora\\ProjetoLocadora.csproj",
+        "projectUniqueName": "C:\\Users\\lucas\\Desktop\\ProjetoLocadora2-main\\locadora\\ProjetoLocadora.csproj",
         "projectName": "ProjetoLocadora",
-        "projectPath": "D:\\Faculdade\\ProjetoLocadora2\\locadora\\ProjetoLocadora.csproj",
-        "packagesPath": "C:\\Users\\Desktop\\.nuget\\packages\\",
-        "outputPath": "D:\\Faculdade\\ProjetoLocadora2\\locadora\\obj\\",
+        "projectPath": "C:\\Users\\lucas\\Desktop\\ProjetoLocadora2-main\\locadora\\ProjetoLocadora.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lucas\\Desktop\\ProjetoLocadora2-main\\locadora\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Desktop\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
