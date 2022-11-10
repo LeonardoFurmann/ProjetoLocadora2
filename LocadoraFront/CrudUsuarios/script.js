@@ -39,51 +39,6 @@ function validacaoTel(id)
     }
 }
 
-// validação do input senha
-function validacaoSenha(id)
-{
-	let divSenha = document.getElementById(id)
-	
-	let senha = divSenha.value
-	
-	let temTamanho   = senha.length >= 8
-	let temMaiuscula = (/[A-Z]/).test(senha)
-	let temMinuscula = (/[a-z]/).test(senha)
-	let temNumero    = (/[0-9]/).test(senha)
-	let temEspecial  = (/[!@#$%&*?{}<>_]/).test(senha)
-	
-	if(temTamanho && temMaiuscula && temMinuscula && temNumero && temEspecial)
-	{
-		divSenha.style.border = 0
-		confirmacaoSenha('confirma-senha')
-		return true
-	}
-	else
-	{
-		divSenha.style.border = 'solid 1px red'
-		confirmacaoSenha('confirma-senha')
-		return false
-	}
-}
-
-// validação do input confirmar senha
-function confirmacaoSenha(id)
-{
-	let divConfirma = document.getElementById(id)
-	let divSenha = document.getElementById('senha')
-	
-	if(divConfirma.value == divSenha.value)
-	{
-		divConfirma.style.border = 0
-		return true
-	}
-	else
-	{
-		divConfirma.style.border = 'solid 1px red'
-		return false
-	}
-}
-
 // função de cadastro dos usuários
 function cadastrar()
 {
@@ -98,16 +53,6 @@ function cadastrar()
 	{
 		return false
 	}
-	
-	if(!validacaoSenha('senha'))
-	{
-		return false
-	}
-	
-	if(!confirmacaoSenha('confirma-senha'))
-	{
-		return false
-	}
 
 	// json da criação de usuário
 	let body =
@@ -117,7 +62,7 @@ function cadastrar()
         'Email':       document.getElementById('email')         .value,
 		'Endereco':    document.getElementById('endereco')      .value,
 		'Numero':      document.getElementById('numero')        .value,
-		'Password':    document.getElementById('senha')         .value
+		'Idade':       document.getElementById('idade')         .value
 	};
 
 	// post no endpoint ''cadastrarusuario''
@@ -197,6 +142,11 @@ function listar()
 			divEmail.placeholder = 'Email'
 			divEmail.value = usuario.email
 			divUsuario.appendChild(divEmail)
+
+			let divIdade = document.createElement('input')
+			divIdade.placeholder = 'Idade'
+			divIdade.value = usuario.idade
+			divUsuario.appendChild(divIdade)
 						
 			//cria o botão para remover o usuário
 			let btnRemover = document.createElement('button')
@@ -224,12 +174,13 @@ function listar()
 }
 
 // função para atualizar os usuários
-function atualizar(id, divNome, divEmail)
+function atualizar(id, divNome, divEmail, divIdade)
 {
 	let body =
 	{
 		'Nome': divNome.value,
 		'Email': divEmail.value,
+		'Idade': divIdade.value,
 	}
 	
 	fetch(url + "atualizarusuario/" + id,
