@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>CRUD Usuários</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js"></script>
+	</head>
+	<body>
+        <h1 class="titulo">Cadastro de usuário</h1>
+		<div class="form">
+			<input id="nome-completo"   placeholder="Nome Completo"      type="text"     onblur="validacaoNome(this.id)"      />
+            <div style="display:flex">
+				<input id="endereco"    placeholder="Endereço"           type="text"     style="margin-right:5px; width: 75%;"/>
+				<input id="numero"      placeholder="N°"                 type="number"   style="margin-right:5px; width: 25%" />
+			</div>
+			<input id="telefone"        placeholder="Telefone"           type="tel"      onblur="validacaoTel(this.id)"       />   
+			<input id="email"           placeholder="Email"              type="email"/>
+			<input id="senha"           placeholder="Senha"              type="password" onblur="validacaoSenha(this.id)"     />
+			<input id="confirma-senha"  placeholder="Confirmar Senha"    type="password" onblur="confirmacaoSenha(this.id)"   />
+			<button onclick="cadastrar()">Cadastrar</button>
+            <p>Ir para <a href="usuarios.html">lista de usuários</a></p>
+		</div>
+        
+	</body>
+</html>

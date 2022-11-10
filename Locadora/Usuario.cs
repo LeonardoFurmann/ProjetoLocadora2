@@ -13,8 +13,8 @@ namespace locadora
 		public string? nome { get; set; }
     	public string? endereco { get; set; }
         public int idade { get; set; }
-        public string? telefone { get; set; }
-
+        public string? telefone { get; set; }     
+        public string? email { get; set; }
         public string? dataCadastro  { get; set; }
     
     }

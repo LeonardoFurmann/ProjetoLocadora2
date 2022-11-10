@@ -90,6 +90,9 @@ namespace ProjetoLocadora.Migrations
                     b.Property<string>("dataCadastro")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("email")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("endereco")
                         .HasColumnType("TEXT");
 

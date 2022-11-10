@@ -226,11 +226,12 @@ namespace locadora
 
 
 			//atualizar usuario
-			app.MapPost("/atualizarusuario/{id}", (BaseDados baseUsuarios, Usuario usuarioAtualizado, int id) =>
+			app.MapPut("/atualizarusuario/{id}", (BaseDados baseUsuarios, Usuario usuarioAtualizado, int id) =>
 			{
 				var usuario = baseUsuarios.Usuarios.Find(id);
 				usuario.endereco = usuarioAtualizado.endereco;
 				usuario.nome = usuarioAtualizado.nome;
+				usuario.email = usuarioAtualizado.email;
 				usuario.telefone = usuarioAtualizado.telefone;
 				usuario.idade = usuarioAtualizado.idade;
 				usuario.dataCadastro= usuarioAtualizado.dataCadastro;
@@ -241,7 +242,7 @@ namespace locadora
 			});
 
 			//atualizar filme
-			app.MapPost("/atualizarfilme/{id}", (BaseDados baseFilmes, Filme filmeAtualizado, int id) =>
+			app.MapPut("/atualizarfilme/{id}", (BaseDados baseFilmes, Filme filmeAtualizado, int id) =>
 			{
 				var filme = baseFilmes.Filmes.Find(id);
 				filme.nome = filmeAtualizado.nome;
@@ -256,7 +257,7 @@ namespace locadora
 			});
 
 			//atualizar alocação
-			app.MapPost("/atualizaralocacao/{id}", (BaseDados baseAlocacoes, Alocar alocacaoAtualizado, int id) =>
+			app.MapPut("/atualizaralocacao/{id}", (BaseDados baseAlocacoes, Alocar alocacaoAtualizado, int id) =>
 			{
 				var alocacao = baseAlocacoes.Alocacoes.Find(id);
 				alocacao.idUsuario = alocacaoAtualizado.idUsuario;
@@ -271,7 +272,7 @@ namespace locadora
 			});
 						
 			//deletar usuario
-			app.MapPost("/deletarusuario/{id}", (BaseDados baseUsuarios, int id) =>
+			app.MapDelete("/deletarusuario/{id}", (BaseDados baseUsuarios, int id) =>
 			{
 				var usuario = baseUsuarios.Usuarios.Find(id);
 				baseUsuarios.Remove(usuario);
@@ -280,7 +281,7 @@ namespace locadora
 			});
 
 			//deletar filme
-			app.MapPost("/deletarfilme/{id}", (BaseDados baseFilmes, int id) =>
+			app.MapDelete("/deletarfilme/{id}", (BaseDados baseFilmes, int id) =>
 			{
 				var filme = baseFilmes.Filmes.Find(id);
 				baseFilmes.Remove(filme);
@@ -289,7 +290,7 @@ namespace locadora
 			});
 
 			//deletar alocação
-			app.MapPost("/deletaralocacao/{id}", (BaseDados baseAlocacoes, int id) =>
+			app.MapDelete("/deletaralocacao/{id}", (BaseDados baseAlocacoes, int id) =>
 			{
 				var alocacao = baseAlocacoes.Alocacoes.Find(id);
 				baseAlocacoes.Remove(alocacao);
