@@ -1461,19 +1461,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lucas\\.nuget\\packages\\": {}
+    "C:\\Users\\Desktop\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lucas\\Desktop\\ProjetoLocadora2-main\\locadora\\ProjetoLocadora.csproj",
+      "projectUniqueName": "D:\\Faculdade\\ProjetoLocadora2\\Locadora\\ProjetoLocadora.csproj",
       "projectName": "ProjetoLocadora",
-      "projectPath": "C:\\Users\\lucas\\Desktop\\ProjetoLocadora2-main\\locadora\\ProjetoLocadora.csproj",
-      "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lucas\\Desktop\\ProjetoLocadora2-main\\locadora\\obj\\",
+      "projectPath": "D:\\Faculdade\\ProjetoLocadora2\\Locadora\\ProjetoLocadora.csproj",
+      "packagesPath": "C:\\Users\\Desktop\\.nuget\\packages\\",
+      "outputPath": "D:\\Faculdade\\ProjetoLocadora2\\Locadora\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Desktop\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -1535,7 +1535,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
