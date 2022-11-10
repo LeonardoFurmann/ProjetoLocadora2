@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locadora</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
+
 <body>
 
     <div class="cabecalho">
-
         <h1>Locadora</h1>
-
-        <div>Cadastar Usuário</div>
-        <div>Cadastar Filme</div>
-
     </div>
 
-    <div class="Inicial">
-    <a href="cadastarAloc.html"><button>Fazer locação</button></a>
-    <a href="listarAlocs.html"><button>Listar locações</button></a>
+    <div class="link">
+        <a  style="background-color: red; padding:20px" href="/LocadoraFront/CrudUsuarios/indexCadastro.html">Cadastar Usuários</a>
+        <a style="background-color: red; padding:20px" href="/LocadoraFront/CrudFilmes/index.html">Cadastrar filmes</a>
     </div>
+    
+
+    <div class="form">
+        <button onclick="listar()">Listar Alocações</button>
+        <div id="lista-alocacoes"></div>
+        <p>Ir para <a href="/LocadoraFront/Página inicial/cadastarAloc.html">Cadastro de alocação</a></p>
+    </div>
+    
 </body>
+
 </html>
