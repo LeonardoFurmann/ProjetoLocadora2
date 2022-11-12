@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locadora</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/f13a287201.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+
+    <div id="form">
+        <form action="">
+           
+            <h2 class="title">Cadastrar Filme</h2>
+           
+            <label for="">Nome do Filme</label>
+            <div class="input">
+                <i class="fa-solid fa-video"></i>
+                <input id="nome" name="nome-filme" placeholder="MovieName" type="text">
+            </div>
+
+            <label for="">Diretor</label>
+            <div class="input">
+                <i class="fa-solid fa-user-tie"></i>
+                <input id="diretor" name="diretor" placeholder="Director" type="text">
+            </div>
+
+            <label for="">Data de Estreia</label>
+            <div class="input">
+                <i class="fa-solid fa-calendar"></i>
+                <input id="dataLancamento" name="data-lancamento" placeholder="date" type="date">
+            </div>
+
+            <label for="">Gênero</label>
+            <div class="input">
+                <i class="fa-solid fa-mug-hot"></i>
+                <input id="genero" name="genero" placeholder="Movie's Gender" type="text">
+            </div>
+
+            <label for="">Classificação Indicativa</label>
+            <div class="input">
+                <i class="fa-solid fa-ticket-simple"></i>
+                <input id="classIndicativa"
+                 name="classificacao-indicativa" placeholder="Age Rating" type="number">
+            </div>
+
+            <div id="btn">
+                <button onclick="cadastrar()" type="submit">Cadastrar</button>
+            </div>
+
+            <p>Ir para <a href="listafilmes.html">lista de filmes</a></p>
+           
+
+        </form>
+
+    </div>
+
+    
+</body>
+</html>
