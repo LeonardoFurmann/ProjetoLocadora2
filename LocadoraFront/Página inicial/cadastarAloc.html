@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locadora</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
+
 <body>
     <div class="cabecalho">
 
@@ -16,15 +20,24 @@
 
     </div>
 
-    <div class="lista-filmes">
-       
+    <div class="formtudo">
+        <div class="form">
+            <div id="lista-filmes">
+                <button onclick="listarFilmes()">Listar Filmes</button>
+
+            </div>
+        </div>
+
+        <div class="form">
+            <div id="lista-usuarios">
+                <button onclick="listarUsuarios()">Listar Usuários</button>
+            </div>
+        </div>
     </div>
 
-    <div class="lista-usuarios">
 
-    </div>
-
-
+    <button onclick="cadastrar()">Cadastrar Alocação</button>
     <a href="indexAloc.html"><button>Voltar</button></a>
 </body>
+
 </html>

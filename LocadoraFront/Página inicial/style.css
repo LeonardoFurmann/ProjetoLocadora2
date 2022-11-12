@@ -13,6 +13,12 @@
     padding: 10px 35% 10px 35%; 
 }
 
+.formtudo{
+	display: flex;
+	margin: 100px;
+	justify-content: space-between;
+}
+
 .form
 {
 	box-shadow: 0 0 1px 0;
@@ -22,6 +28,8 @@
 	padding: 30px;
 	text-align: center;
 }
+
+
 
 .form button, input
 {
