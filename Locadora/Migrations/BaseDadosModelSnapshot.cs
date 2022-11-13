@@ -42,9 +42,8 @@ namespace ProjetoLocadora.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("statusAloc")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("statusAloc")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("id");
 
@@ -72,9 +71,8 @@ namespace ProjetoLocadora.Migrations
                     b.Property<string>("nome")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("statusFilme")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("statusFilme")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("id");
 

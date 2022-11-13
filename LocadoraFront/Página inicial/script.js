@@ -1,6 +1,6 @@
 var url = 'http://localhost:3000/'
 
-let idFilme;
+let idFilme = 0;
 let idUsuario;
 var statusFilme
 let idade;
@@ -58,7 +58,15 @@ function listar()
 			let divStatus = document.createElement('input')
 			divStatus.placeholder = 'Status'
 			divStatus.value = alocacao.statusAloc
+
+			if(alocacao.statusAloc){
+				divStatus.value = "Em andamento"
+			}else{
+				divStatus.value = alocacao.statusAloc = "Devolvido"
+			}
+
 			divAlocacao.appendChild(divStatus)
+			
 			
 						
 			//cria o botão para remover a alocacao
@@ -67,17 +75,24 @@ function listar()
 			btnRemover.onclick = u => remover(alocacao.id)
 			btnRemover.style.marginRight = '5px'
 			
-			//cria o botão para atualizar a alocacao
-			let btnAtualizar = document.createElement('button')
-			btnAtualizar.innerHTML = 'Atualizar'
-			btnAtualizar.onclick = u => atualizar(alocacao.id, divNomeUsuario, divNomeFilme)
-			btnAtualizar.style.marginLeft = '5px'
+			// //cria o botão para atualizar a alocacao
+			// let btnAtualizar = document.createElement('button')
+			// btnAtualizar.innerHTML = 'Atualizar'
+			// btnAtualizar.onclick = u => atualizar(alocacao.id, divNomeUsuario, divNomeFilme)
+			// btnAtualizar.style.marginLeft = '5px'
+
+			//cria o botão para fazer devolucao
+			let btnDevolucao = document.createElement('button')
+			btnDevolucao.innerHTML = 'Devolver'
+			btnDevolucao.onclick = u => devolver(alocacao.id)
+			btnDevolucao.style.marginLeft = '5px'
 			
-			//cria a div com os dois botões
+			//cria a div com os botões
 			let divBotoes = document.createElement('div')
 			divBotoes.style.display = 'flex'
 			divBotoes.appendChild(btnRemover)
-			divBotoes.appendChild(btnAtualizar)
+			//divBotoes.appendChild(btnAtualizar)
+			divBotoes.appendChild(btnDevolucao)
 			divAlocacao.appendChild(divBotoes)
 			
 			//insere a div do usuario na div com a lista de usuarios
@@ -86,18 +101,16 @@ function listar()
 	})
 }
 
-// função para atualizar as alocações
-function atualizar(id, divNomeUsuario, divNomeFilme)
-{
+//função para devolver a alocação
+function devolver(id){
 	let body =
 	{
-		'NomeUsuario': divNomeUsuario.value,
-		'NomeFilme': divNomeFilme.value,
+		'statusAloc': false
 	}
 	
-	fetch(url + "atualizaralocacao/" + id,
+	fetch(url + "devolucao/" + id,
 	{
-		'method': 'PUT',
+		'method': 'POST',
 		'redirect': 'follow',
 		'headers':
 		{
@@ -124,14 +137,62 @@ function atualizar(id, divNomeUsuario, divNomeFilme)
 	{
 		listar()
 		console.log(output)
-		alert('Alocação atualizada!')
+		alert('Alocação devolvida!')
 	})
 	.catch((error) =>
 	{
 		console.log(error)
-		alert('Não foi possível atualizar a alocação')
+		alert('Não foi possível devolver a alocação')
 	})
 }
+
+
+// // função para atualizar as alocações
+// function atualizar(id, divNomeUsuario, divNomeFilme)
+// {
+// 	let body =
+// 	{
+// 		'NomeUsuario': divNomeUsuario.value,
+// 		'NomeFilme': divNomeFilme.value,
+// 	}
+	
+// 	fetch(url + "atualizaralocacao/" + id,
+// 	{
+// 		'method': 'PUT',
+// 		'redirect': 'follow',
+// 		'headers':
+// 		{
+// 			'Content-Type': 'application/json',
+// 			'Accept': 'application/json'
+// 		},
+// 		'body': JSON.stringify(body)
+// 	})
+// 	.then((response) =>
+// 	{
+// 		if(response.ok)
+// 		{
+// 			return response.text()
+// 		}
+// 		else
+// 		{
+// 			return response.text().then((text) =>
+// 			{
+// 				throw new Error(text)
+// 			})
+// 		}
+// 	})
+// 	.then((output) =>
+// 	{
+// 		listar()
+// 		console.log(output)
+// 		alert('Alocação atualizada!')
+// 	})
+// 	.catch((error) =>
+// 	{
+// 		console.log(error)
+// 		alert('Não foi possível atualizar a alocação')
+// 	})
+// }
 
 // função para remover alocações
 function remover(id)
@@ -282,13 +343,24 @@ function listarFilmes()
 			let divStatusFilme = document.createElement('input')
 			divStatusFilme.placeholder = 'StatusFilme'
 			divStatusFilme.value = filme.statusFilme
-			divFilme.appendChild(divStatusFilme)
 
+			if (filme.statusFilme) {
+				divStatusFilme.value = "Disponível"
+			}else{
+				divStatusFilme.value = "Está Alocado"
+			}
+
+			divFilme.appendChild(divStatusFilme)
+		
+		
+
+			
 			//cria o botão para selecionar o filme
 			let btnSelecionar = document.createElement('button')
 			btnSelecionar.innerHTML = 'Selecionar'
-			btnSelecionar.onclick = u => selecionarFilme(filme.id, filme.statusFilme, filme.classIndicativa)
+			btnSelecionar.onclick = u =>  selecionarFilme(filme.id, filme.statusFilme, filme.classIndicativa, divFilme )
 			btnSelecionar.style.marginLeft = '5px'
+
 			
 			//cria a div com o botão
 			let divBotoes = document.createElement('div')
@@ -296,6 +368,7 @@ function listarFilmes()
 			divBotoes.appendChild(btnSelecionar)
 			divFilme.appendChild(divBotoes)
 
+		
 			listarFilmes.appendChild(divFilme)
 			
 		}
@@ -303,10 +376,14 @@ function listarFilmes()
 	})
 }
 
-function selecionarFilme(id, status, ci){
-	idFilme = id
-	statusFilme = status
+function selecionarFilme(id, status, ci, div){	
+
+	listarFilmes()
+
+	idFilme = id,
+	statusFilme = status,
 	classIndicativa = ci
+	div.style.border = 'solid 1px red'
 
 	console.log(idFilme)
 }
@@ -411,4 +488,4 @@ function cadastrar(){
 }
 
 
-//TODO DEVOLUÇÃO
+

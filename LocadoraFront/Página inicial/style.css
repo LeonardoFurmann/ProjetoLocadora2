@@ -8,7 +8,7 @@
 
 .link{
     display: flex;
-    background-color: rgb(206, 73, 73);
+    background-color: #ff4d4d;
     justify-content: space-between;
     padding: 10px 35% 10px 35%; 
 }
@@ -47,15 +47,33 @@
 	cursor: pointer;
 }
 
-.form button:active
-{
-	background: red;
-}
-
 .form input
 {
 	background: #e2e2e2e2;
 	box-sizing: border-box;
 	margin-bottom: 15px;
+}
+
+.bots{
+	display: flex;
+	justify-content: center;
+}
+
+ .bots button
+{
+	border: 1px solid black;
+	font-size: 14px;
+	margin: 20px;
+	outline: 0;
+	padding: 40px;
+	background: #ff4d4d;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+
+button:active
+{
+	background: red;
 }
 

@@ -17,7 +17,7 @@ namespace locadora
         public string? genero { get; set; }   
         public int classIndicativa { get; set; }
 
-       public string statusFilme { get; set; }
+       public bool statusFilme { get; set; }
 
         
     }

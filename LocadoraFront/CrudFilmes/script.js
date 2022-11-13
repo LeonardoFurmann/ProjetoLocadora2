@@ -97,6 +97,19 @@ function listar()
 			divGenero.placeholder = 'Gênero'
 			divGenero.value = filme.genero
 			divFilme.appendChild(divGenero)
+
+			//pega o status do fime
+			let divStatusFilme = document.createElement('input')
+			divStatusFilme.placeholder = 'StatusFilme'
+			divStatusFilme.value = filme.statusFilme
+
+			if (filme.statusFilme) {
+				divStatusFilme.value = "Disponível"
+			}else{
+				divStatusFilme.value = "Está Alocado"
+			}
+
+			divFilme.appendChild(divStatusFilme)
 			
 			
 			//cria o botao para remover o usuario
