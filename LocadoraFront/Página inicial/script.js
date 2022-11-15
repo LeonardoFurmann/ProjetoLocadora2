@@ -1,6 +1,6 @@
 var url = 'http://localhost:3000/'
 
-let idFilme = 0;
+let idFilme;
 let idUsuario;
 var statusFilme
 let idade;
@@ -272,7 +272,7 @@ function listarUsuarios()
 			//cria o botão para selecionar o usuario
 			let btnSelecionar = document.createElement('button')
 			btnSelecionar.innerHTML = 'Selecionar'
-			btnSelecionar.onclick = u => selecionarUsuario(usuario.id, usuario.idade)
+			btnSelecionar.onclick = u => selecionarUsuario(usuario.id, usuario.idade,divUsuario)
 			btnSelecionar.style.marginLeft = '5px'
 			
 			//cria a div com o botão
@@ -380,17 +380,21 @@ function selecionarFilme(id, status, ci, div){
 
 	listarFilmes()
 
-	idFilme = id,
-	statusFilme = status,
+	idFilme = id
+	statusFilme = status
 	classIndicativa = ci
 	div.style.border = 'solid 1px red'
 
 	console.log(idFilme)
 }
 
-function selecionarUsuario(id, age){
+function selecionarUsuario(id, age, div){
+
+	listarUsuarios()
+
 	idUsuario = id;
 	idade = age
+	div.style.border = 'solid 1px red'
 
 	console.log(idUsuario)
 }
@@ -408,38 +412,38 @@ function verificaClassificacaoIndicativa(){
 		return idadeCorreta;
 }
 
-function verificaFilmeLocado(){
-	let estaLocado = false
+// function verificaFilmeLocado(){
+// 	let estaLocado = false
 
-	if (statusFilme === "Está Locado") {
-		estaLocado = true;
-	} else {
-		estaLocado = false;
-	}
+// 	if (statusFilme === "Está Locado") {
+// 		estaLocado = true;
+// 	} else {
+// 		estaLocado = false;
+// 	}
 
-	return estaLocado;
+// 	return estaLocado;
 
 
-}
+// }
 
 
 function cadastrar(){
 
 	// testes para ver se será possível efetuar o cadastro
-	if(!verificaClassificacaoIndicativa())
+	if(verificaClassificacaoIndicativa() == false)
 	{
-		return false
+		return 
 	}
 
-    if(verificaFilmeLocado())
+    if(statusFilme == false)
 	{
-		return false
+		return 
 	}
 
-	// json da criação de usuário
+	// json da criação de aloc
 	let body =
 	{
-        'idUsuario':  idUsuario,
+        'idUsuario': idUsuario,
         'idFilme': idFilme
         
 	};
@@ -472,14 +476,14 @@ function cadastrar(){
 		}
 	})
 
-	// resposta para caso de certo
+	
 	.then((output) =>
 	{
 		console.log(output)
 		alert('Cadastro realizado com sucesso.')
 	})
 
-	// resposta para caso tenha ocorrido algum erro
+	
 	.catch((error) =>
 	{
 		console.log(error)

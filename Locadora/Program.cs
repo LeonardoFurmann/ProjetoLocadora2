@@ -199,14 +199,14 @@ namespace locadora
 			int cI;
 			
 
-			if (banco.Usuarios.Find((alocar.idUsuario)).idade <= 0)
+			if (banco.Usuarios.Find((alocar.idUsuario)).idade > 0)
 			{
 				 idade = banco.Usuarios.Find((alocar.idUsuario)).idade;
 			} else {
 				return idadeCorreta = false;
 			}
 
-			if (banco.Filmes.Find((alocar.idFilme)).classIndicativa <= 0)
+			if (banco.Filmes.Find((alocar.idFilme)).classIndicativa > 0)
 			{
 				 cI = banco.Filmes.Find((alocar.idFilme)).classIndicativa;
 			} else {
