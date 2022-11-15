@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Faculdade\\ProjetoLocadora2\\locadora\\ProjetoLocadora.csproj": {}
+    "D:\\Faculdade\\ProjetoLocadora2\\LOCADORA\\ProjetoLocadora.csproj": {}
   },
   "projects": {
-    "D:\\Faculdade\\ProjetoLocadora2\\locadora\\ProjetoLocadora.csproj": {
+    "D:\\Faculdade\\ProjetoLocadora2\\LOCADORA\\ProjetoLocadora.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Faculdade\\ProjetoLocadora2\\locadora\\ProjetoLocadora.csproj",
+        "projectUniqueName": "D:\\Faculdade\\ProjetoLocadora2\\LOCADORA\\ProjetoLocadora.csproj",
         "projectName": "ProjetoLocadora",
-        "projectPath": "D:\\Faculdade\\ProjetoLocadora2\\locadora\\ProjetoLocadora.csproj",
+        "projectPath": "D:\\Faculdade\\ProjetoLocadora2\\LOCADORA\\ProjetoLocadora.csproj",
         "packagesPath": "C:\\Users\\Desktop\\.nuget\\packages\\",
-        "outputPath": "D:\\Faculdade\\ProjetoLocadora2\\locadora\\obj\\",
+        "outputPath": "D:\\Faculdade\\ProjetoLocadora2\\LOCADORA\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Desktop\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zg43ldCwBfl6Yd9osoAjiuHXtQRfba7/ycxul5JhnENyKjTiGoKffjMooFdawR0+5UNiWidy2QGFDAP+xLZ1iQ==",
+  "dgSpecHash": "XlztVN189gHOeESSo9DJplEQ/rlxpcwfp1u5TmqnZuj+Dj2zn2zfR758lIInmjKxvWotwKBNBH2nXlr2RLYt2g==",
   "success": true,
-  "projectFilePath": "D:\\Faculdade\\ProjetoLocadora2\\locadora\\ProjetoLocadora.csproj",
+  "projectFilePath": "D:\\Faculdade\\ProjetoLocadora2\\LOCADORA\\ProjetoLocadora.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Desktop\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Desktop\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.0\\microsoft.data.sqlite.core.6.0.0.nupkg.sha512",
